@@ -63,19 +63,24 @@ int main() {
 	//time_t & tm
 	time_t start_time;
 	struct tm start_time_info;
-	time_t end_time;
-	struct tm end_time_info;
 
 	time(&start_time);
 	localtime_s(&start_time_info, &start_time);
 	start_time_info.tm_hour = SH;
 	start_time_info.tm_min = SM;
 
+	time_t end_time;
+	struct tm end_time_info;
+
 	time(&end_time);
 	localtime_s(&end_time_info, &end_time);
-	end_time_info.tm_hour = SH;
-	end_time_info.tm_min = SM;
+	end_time_info.tm_hour = EH;
+	end_time_info.tm_min = EM;
 
+	start_time = mktime(&start_time_info);
+	end_time = mktime(&end_time_info);
+
+	double diff_time = difftime(end_time, start_time);
 
 
 
